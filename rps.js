@@ -1,17 +1,25 @@
 function getComputerChoice() {
-    //Declare variables//
+    //Sets a variable with a random number//
     let randNum = Math.floor(Math.random() * 3);
-    let choice = "";
     //Choose between three items//
+    let choice = "";
     if (randNum === 0) {
         choice = "Rock";
     } else if (randNum === 1) {
         choice = "Paper";
     } else {
-        choice = "Scissors"
+        choice = "Scissors";
     }
     //Return the choice//
-    return console.log(choice);
+    return choice;
 }
 
-getComputerChoice();
+function getHumanChoice() {
+    //Prompts user for pick//
+    let choice = prompt("What's your choice?:");
+    //Return the choice//
+    return choice;
+}
+
+console.log(getComputerChoice());
+console.log(getHumanChoice());
