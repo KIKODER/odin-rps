@@ -53,25 +53,28 @@ function playRound(humanChoice, computerChoice) {
     return winner;
 }
 
+function playGame() {
+    //Scores//
+    let humanScore = 0;
+    let computerScore = 0;
 
+    for (let i = 0; i < 5; i++) {
+        //Call and hold result of both player choices//
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        //Play the round//
+        roundResult = playRound(humanSelection, computerSelection);
+        //Update scores//
+        if (roundResult < 0) {
+            computerScore++;
+        } else if (roundResult > 0) {
+            humanScore++;
+        } else {
 
-//Scores//
-let humanScore = 0;
-let computerScore = 0;
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-//Play the round//
-roundResult = playRound(humanSelection, computerSelection);
-//Update scores//
-if (roundResult < 0) {
-    computerScore++;
-} else if (roundResult > 0) {
-    humanScore++;
-} else {
-
+        }
+        //Displays scores//
+        console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
+    }
 }
 
-//Displays scores//
-console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
+playGame();
