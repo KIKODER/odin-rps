@@ -22,18 +22,23 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    
+    //Declares winner variable//
+    let winner = 0;
+    //Display both choices//
     console.log(`You threw: ${humanChoice}`);
     console.log(`The computer threw: ${computerChoice}`);
-
+    //Decide the winner//
     if (humanChoice === computerChoice) {
         console.log("It's a draw!");
     } else if (humanChoice == "ROCK" && computerChoice == "SCISSORS") {
         console.log(`Nice! ${humanChoice} beats ${computerChoice}!`);
+        winner++;
     } else if (humanChoice == "PAPER" && computerChoice == "ROCK") {
         console.log(`Nice! ${humanChoice} beats ${computerChoice}!`);
+        winner++;
     } else if (humanChoice == "SCISSORS" && computerChoice == "PAPER") {
         console.log(`Nice! ${humanChoice} beats ${computerChoice}!`);
+        winner++;
     } else if (humanChoice == "ROCK" && computerChoice == "PAPER") {
         console.log(`Oops! ${computerChoice} beats ${humanChoice}!`);
     } else if (humanChoice == "PAPER" && computerChoice == "SCISSORS") {
@@ -41,12 +46,16 @@ function playRound(humanChoice, computerChoice) {
     } else {
         console.log(`Oops! ${computerChoice} beats ${humanChoice}!`);
     } 
+    //Return the winner//
+    return winner;
 }
 
+//Scores//
 let humanScore = 0;
 let computerScore = 0;
+
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+roundResult = playRound(humanSelection, computerSelection);
 
