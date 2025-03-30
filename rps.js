@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    //Sets a variable with a random number//
+    //Set a variable with a random number//
     let randNum = Math.floor(Math.random() * 3);
     //Choose between three items//
     let choice = "";
@@ -10,19 +10,21 @@ function getComputerChoice() {
     } else {
         choice = "Scissors";
     }
-    //Return the choice//
+    //Return the choice as uppercase//
+    //This is to ensure case insensitivity//
     return choice.toUpperCase();
 }
 
 function getHumanChoice() {
-    //Prompts user for pick//
+    //Prompt user for pick//
     let choice = prompt("What's your choice?:");
-    //Return the choice//
+    //Return the choice as uppercase//
+    //This is to ensure case insensitivity//
     return choice.toUpperCase();
 }
 
 function playRound(humanChoice, computerChoice) {
-    //Declares winner variable//
+    //Declare winner variable//
     let winner = 0;
     //Display both choices//
     console.log(`You threw: ${humanChoice}`);
@@ -54,17 +56,17 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-    //Scores//
+    //Declare scores//
     let humanScore = 0;
     let computerScore = 0;
-
+    //Play through five rounds//
     for (let i = 0; i < 5; i++) {
-        //Call and hold result of both player choices//
+        //Call and hold results of both player choices//
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
-        //Play the round//
+        //Plays the round//
         roundResult = playRound(humanSelection, computerSelection);
-        //Update scores//
+        //Updates scores//
         if (roundResult < 0) {
             computerScore++;
         } else if (roundResult > 0) {
@@ -72,8 +74,18 @@ function playGame() {
         } else {
 
         }
-        //Displays scores//
+        //Display scores after each round//
         console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
+    }
+    //Display the match results//
+    console.log(`Match Results: \nUser = ${humanScore} / Comp = ${computerScore}`);
+    //Decide and display the winner//
+    if (humanScore > computerScore) {
+        console.log("Congrats, you won the match!");
+    } else if (humanScore < computerScore) {
+        console.log("Sorry, you lost the match.");
+    } else {
+        console.log("The match is a draw.");
     }
 }
 
