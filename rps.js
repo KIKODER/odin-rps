@@ -41,10 +41,13 @@ function playRound(humanChoice, computerChoice) {
         winner++;
     } else if (humanChoice == "ROCK" && computerChoice == "PAPER") {
         console.log(`Oops! ${computerChoice} beats ${humanChoice}!`);
+        winner--;
     } else if (humanChoice == "PAPER" && computerChoice == "SCISSORS") {
         console.log(`Oops! ${computerChoice} beats ${humanChoice}!`);
+        winner--;
     } else {
         console.log(`Oops! ${computerChoice} beats ${humanChoice}!`);
+        winner--;
     } 
     //Return the winner//
     return winner;
@@ -57,5 +60,16 @@ let computerScore = 0;
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
+//Play the round//
 roundResult = playRound(humanSelection, computerSelection);
+//Update scores//
+if (roundResult < 0) {
+    computerScore++;
+} else if (roundResult > 0) {
+    humanScore++;
+} else {
 
+}
+
+//Displays scores//
+console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
