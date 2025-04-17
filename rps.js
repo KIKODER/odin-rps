@@ -1,3 +1,7 @@
+//Declare scores//
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     //Set a variable with a random number//
     let randNum = Math.floor(Math.random() * 3);
@@ -15,20 +19,9 @@ function getComputerChoice() {
     return choice.toUpperCase();
 }
 
-function getHumanChoice() {
-    //Prompt user for pick//
-    let choice = prompt("What's your choice?:");
-    //Return the choice as uppercase//
-    //This is to ensure case insensitivity//
-    return choice.toUpperCase();
-}
-
 function playRound(humanChoice, computerChoice) {
     //Declare winner variable//
     let winner = 0;
-    //Display both choices//
-    console.log(`You threw: ${humanChoice}`);
-    console.log(`The computer threw: ${computerChoice}`);
     //Decide the winner//
     if (humanChoice === computerChoice) {
         console.log("It's a draw!");
@@ -55,37 +48,32 @@ function playRound(humanChoice, computerChoice) {
     return winner;
 }
 
-function playGame() {
-    //Declare scores//
-    let humanScore = 0;
-    let computerScore = 0;
-
+function playRoundWithChoice(humanInput) {
     //Call and hold results of both player choices//
-    const humanSelection = getHumanChoice();
+    const humanSelection = humanInput.toUpperCase();
     const computerSelection = getComputerChoice();
     //Plays the round//
     roundResult = playRound(humanSelection, computerSelection);
-    //Updates scores//
+
+    const resultsDiv = document.getElementById("results");
+    const scoreDiv = document.getElementById("score");
+
     if (roundResult < 0) {
         computerScore++;
     } else if (roundResult > 0) {
         humanScore++;
-    } else {
-
     }
-    //Display scores after each round//
-    console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
 
-    //Display the match results//
-    console.log(`Match Results: \nUser = ${humanScore} / Comp = ${computerScore}`);
-    //Decide and display the winner//
-    if (humanScore > computerScore) {
-        console.log("Congrats, you won the match!");
-    } else if (humanScore < computerScore) {
-        console.log("Sorry, you lost the match.");
-    } else {
-        console.log("The match is a draw.");
+    resultsDiv.textContent = `You threw ${humanSelection}, the computer threw ${computerSelection}`;
+    scoreDiv.textContent = `Score: You ${humanScore} | Computer ${computerScore}`;
+
+    // Check for end of game
+    if (humanScore === 5 || computerScore === 5) {
+        const winner = humanScore === 5 ? "You win!" : "Computer wins!";
+        resultsDiv.textContent += `\n${winner}`;
     }
 }
 
-playGame();
+document.getElementById("rockB").addEventListener("click", () => playRoundWithChoice("rock"));
+document.getElementById("paperB").addEventListener("click", () => playRoundWithChoice("paper"));
+document.getElementById("scissorsB").addEventListener("click", () => playRoundWithChoice("scissors"));
