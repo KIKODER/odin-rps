@@ -59,24 +59,23 @@ function playGame() {
     //Declare scores//
     let humanScore = 0;
     let computerScore = 0;
-    //Play through five rounds//
-    for (let i = 0; i < 5; i++) {
-        //Call and hold results of both player choices//
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        //Plays the round//
-        roundResult = playRound(humanSelection, computerSelection);
-        //Updates scores//
-        if (roundResult < 0) {
-            computerScore++;
-        } else if (roundResult > 0) {
-            humanScore++;
-        } else {
 
-        }
-        //Display scores after each round//
-        console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
+    //Call and hold results of both player choices//
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    //Plays the round//
+    roundResult = playRound(humanSelection, computerSelection);
+    //Updates scores//
+    if (roundResult < 0) {
+        computerScore++;
+    } else if (roundResult > 0) {
+        humanScore++;
+    } else {
+
     }
+    //Display scores after each round//
+    console.log(`Score is: User = ${humanScore} / Comp = ${computerScore}`);
+
     //Display the match results//
     console.log(`Match Results: \nUser = ${humanScore} / Comp = ${computerScore}`);
     //Decide and display the winner//
